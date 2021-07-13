@@ -1,0 +1,33 @@
+﻿@model MyTravelWebsite.Models.Comment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <button class="btn" type="reset" style="background-color:brown">@Html.ActionLink("Back To List", "Index")</button>
+</div>

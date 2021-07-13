@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "AssignRoles";
+}
+<br />
+<h2>Assign Roles</h2>
+<br />
+@using (Html.BeginForm("AssignRolesAsync", "Admin", FormMethod.Post))
+{
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label">Select User</label>
+                        <br />
+                        @Html.DropDownList("UserName", (IEnumerable<SelectListItem>)ViewBag.Users, "Select...")
+                        <br />
+                        <br />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">Select Role</label>
+                        <br />
+                        @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select...")
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <button class="btn btn-success" type="submit">Save</button>
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </fieldset>
+    </form>
+} 

@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users & Roles</h2>
+<br />
+<div class="row">
+    <div class ="container">
+        <button class="btn" type="button" style="background-color: #ff0066;">
+            @Html.ActionLink("Create User", "CreateUser", "Admin")
+        </button>
+        <br />
+        <br />
+        <button class="btn" type="button" style="background-color: #ff0066">
+            @Html.ActionLink("Create Role", "CreateRole", "Admin")
+        </button>
+        <br />
+        <br />
+        <button class="btn" type="button" style="background-color: #3333cc">
+            @Html.ActionLink("Assign Role To User", "AssignRoles", "Admin")
+        </button>
+        <br />
+        <br />
+        <button class="btn" type="button" style="background-color: #00802b">
+            @Html.ActionLink("Show All Users", "ShowAllUsers", "Admin")
+        </button>
+        <br />
+        <br />
+        <button class="btn" type="button" style="background-color: #00802b">
+            @Html.ActionLink("Show Users with Roles", "UserView", "Admin")
+            <!--(Name, Method, Controller)-->
+        </button>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "CreateRole";
+}
+<br />
+<h2>Create Role</h2>
+<br />
+@using (Html.BeginForm("CreateNewRole", "Admin", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <label class="control-label">Role Name</label>
+            <input type="text" class="form-control" onblur="this.value=removeSpaces(this.value);" name="RoleName" required />
+        </div>
+    </div>
+    <br />
+    <div>
+        <button class="btn btn-success" type="submit">Save</button>
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+    <br />
+    </div>
+}

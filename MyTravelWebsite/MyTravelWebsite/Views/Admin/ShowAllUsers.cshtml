@@ -1,0 +1,53 @@
+﻿@model List<MyTravelWebsite.Models.ApplicationUser>
+@{
+    ViewBag.Title = "ShowAllUsers";
+}
+<br />
+<h2>All Users</h2>
+<br />
+@using (Html.BeginForm("ShowSearch", "Admin", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <label for="SearchPhrase">Search: </label>
+                        <input type="text" class="form-control" id="search" name="SearchPhrase" required onblur="this.value=removeSpaces(this.value);" placeholder="User Email" />
+                        <input type="submit" value="Search" class="btn btn-success" />
+                        <button class="btn" type="button" style="background-color: #ac3939; left:30px">
+                            @Html.ActionLink("Back to Admin Menu", "Index")
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<br />
+<br />
+<div class="row">
+    <div class="container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="btn-primary">
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                    <th>PhoneNumber</th>
+                </tr>
+            </thead>
+            <tbody style="background-color:white">
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => i.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => i.UserName)</td>
+                        <td>@Html.DisplayFor(modelItem => i.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => i.PhoneNumber)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

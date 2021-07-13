@@ -1,0 +1,39 @@
+﻿@model MyTravelWebsite.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of Posts</h2>
+
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <button class="btn" type="reset" style="background-color:brown">@Html.ActionLink("Back To List", "Index")</button>
+</div>

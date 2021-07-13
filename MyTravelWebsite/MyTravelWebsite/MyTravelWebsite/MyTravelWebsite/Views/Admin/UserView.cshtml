@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MyTravelWebsite.Models.UserView>
+@{
+    ViewBag.Title = "UserView";
+}
+
+<br />
+<h2>Users with Roles</h2>
+<br />
+<button class="btn" type="button" style="background-color: #ac3939">
+    @Html.ActionLink("Back to Admin Menu", "Index")
+</button>
+<br />
+<br />
+<div class="row">
+    <div class="container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="btn-primary">
+                    <th>Username</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Username</td>
+                        <td>@user.Role</td>
+                        <!--<td>DELETE BUTTON</td>-->
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

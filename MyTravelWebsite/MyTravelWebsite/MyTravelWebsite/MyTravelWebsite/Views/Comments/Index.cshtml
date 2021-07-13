@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MyTravelWebsite.Models.Comment>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Comments/Complaints</h2>
+<br />
+<button class="btn" type="reset" style="background-color: #006600">
+    @Html.ActionLink("Create New", "Create")
+</button>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr class="btn-info">
+        <th>
+            @Html.DisplayNameFor(model => model.user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.content)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (Request.IsAuthenticated && User.Identity.GetUserName() == item.user)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.content)
+                </td>
+                <td>
+                    <button class="btn" type="reset" style="background-color: #cc7a00">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    </button> |
+                    <button class="btn" type="reset" style="background-color: #ffff4d">
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    </button> 
+                </td>
+            </tr>
+        }
+        else if (Request.IsAuthenticated && ((User.IsInRole("SuperAdmin") || User.IsInRole("Travel Organizer"))))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.content)
+                </td>
+                <td>
+                    <button class="btn" type="reset" style="background-color: #cc7a00">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    </button> |
+                    <button class="btn" type="reset" style="background-color: #ffff4d">
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    </button> |
+                    <button class="btn btn-danger" type="reset">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </button>
+                </td>
+            </tr>
+        }
+    }
+</table>

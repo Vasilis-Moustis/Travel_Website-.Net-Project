@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "CreateUser";
+}
+<br />
+<h2>CreateUser</h2>
+<br />
+<p>Password must have at least one of these characters & more than 6 characters(!#$%^&*(),uppercase and lowercase)</p>
+<br />
+@using (Html.BeginForm("CreateUser", "Admin", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-3">
+            <label class="control-label">User Name</label>
+            <input type="email" name="textEmail" onblur="this.value=removeSpaces(this.value);" class="form-control" placeholder="Enter Email" required />
+        </div>
+        <br />
+        <div class="col-md-3">
+            <label class="control-label">User Fullname</label>
+            <input type="text" name="textName" class="form-control" onblur="this.value=removeSpaces(this.value);" placeholder="Enter Fullname" required />
+        </div>
+        <br />
+        <div class="col-md-3">
+            <label class="control-label">User Password</label>
+            <input type="password" name="textPass" class="form-control" onblur="this.value=removeSpaces(this.value);" placeholder="Enter Password" required />
+        </div>
+        <br />
+        <div class="col-md-3">
+            <label class="control-label">User PhoneNumber</label>
+            <input type="tel" name="textPhone" class="form-control" onblur="this.value=removeSpaces(this.value);" placeholder="Enter PhoneNumber" required />
+        </div>
+    </div>
+    <br />
+    <div>
+        <button type="submit" value="Submit" class="btn btn-success">Save</button>
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+    </div>
+}

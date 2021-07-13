@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MyTravelWebsite.Models.Messages>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Sent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>Messages</h2>
+<br />
+@using (Html.BeginForm("ShowSearchMessage", "Messages", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-4 col-sm-3">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <label for="SearchPhrase">Search: </label>
+                        <input type="text" class="form-control" id="search" onblur="this.value=removeSpaces(this.value);" name="SearchPhrase" required placeholder="Username - Email" />
+                        <input type="submit" value="Search" class="btn btn-success" />
+                        <button class="btn" style="background-color:forestgreen; left:30px;"> @Html.ActionLink("Create New", "Create", "Messages")</button>
+                        <button class="btn" style="background-color:palevioletred; left:50px;"> @Html.ActionLink("Sent Message", "Sent", "Messages")</button>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr class="btn-info">
+            <th>
+                @Html.DisplayNameFor(model => model.sender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.recipient)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style="background-color:white">
+        @foreach (var item in Model)
+        {
+            if (Request.IsAuthenticated && User.Identity.GetUserName() == item.recipient)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recipient)
+                    </td>
+                    <td>
+                        <button class="btn" type="reset" style="background-color: #cc7a00">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        </button> |
+                        <button class="btn" type="reset" style="background-color: #ffff4d">
+                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        </button> |
+                        <button class="btn btn-danger" type="reset">
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

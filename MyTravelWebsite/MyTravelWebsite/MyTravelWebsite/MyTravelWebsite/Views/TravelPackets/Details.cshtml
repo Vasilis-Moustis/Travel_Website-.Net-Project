@@ -1,0 +1,64 @@
+﻿@model MyTravelWebsite.Models.TravelPacket
+
+@{
+    ViewBag.Title = "Details";
+}
+<br />
+<h2>Details for Travel Packets</h2>
+<br />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Departure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Return)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Return)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tranportation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tranportation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <button class="btn" type="reset" style="background-color:brown">@Html.ActionLink("Back to List", "Index")</button>
+</div>

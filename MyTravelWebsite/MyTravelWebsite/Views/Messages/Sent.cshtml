@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MyTravelWebsite.Models.Messages>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Sent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>Sent</h2>
+@using (Html.BeginForm("ShowSearchSent", "Messages", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <label for="SearchPhrase">Search: </label>
+                        <input type="text" class="form-control" id="search" name="SearchPhrase" onblur="this.value=removeSpaces(this.value);" required placeholder="Username - Email" />
+                        <input type="submit" value="Search" class="btn btn-success" />
+                        <button class="btn" style="background-color:forestgreen; left:30px;"> @Html.ActionLink("Create New", "Create", "Messages")</button>
+                        <button class="btn" style="background-color:palevioletred; left:50px;"> @Html.ActionLink("Inbox", "Index", "Messages")</button>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr class="btn-info">
+            <th>
+                @Html.DisplayNameFor(model => model.sender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.recipient)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style="background-color:white">
+        @foreach (var item in Model)
+        {
+            if (Request.IsAuthenticated && User.Identity.GetUserName() == item.sender)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recipient)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

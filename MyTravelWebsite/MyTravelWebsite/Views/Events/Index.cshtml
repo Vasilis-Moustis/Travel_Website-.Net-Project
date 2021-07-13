@@ -1,0 +1,96 @@
+﻿@model IEnumerable<MyTravelWebsite.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Events</h2>
+<br />
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Travel Organizer"))
+{
+    using (Html.BeginForm("ShowSearchEvent", "Events", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <label for="SearchPhrase">Search: </label>
+                            <input type="text" class="form-control" id="search" onblur="this.value=removeSpaces(this.value);" name="SearchPhrase" required placeholder="Name of Company" />
+                            <input type="submit" value="Search" class="btn btn-success" />
+                            <button class="btn" type="reset" style="background-color: #006600; left:30px;">
+                                @Html.ActionLink("Create New", "Create", "Events")
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<br />
+<br />
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr class="btn-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.Place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style="background-color:white">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Place)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Travel Organizer"))
+                {
+                    <td>
+                        <button class="btn" type="reset" style="background-color: #cc7a00">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        </button> |
+                        <button class="btn" type="reset" style="background-color: #ffff4d">
+                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        </button> |
+                        <button class="btn btn-danger" type="reset">
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </button>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-warning" })
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

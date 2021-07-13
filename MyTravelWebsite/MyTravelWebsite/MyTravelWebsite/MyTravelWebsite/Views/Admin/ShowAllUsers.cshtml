@@ -1,0 +1,35 @@
+﻿@model List<MyTravelWebsite.Models.ApplicationUser>
+@{
+    ViewBag.Title = "ShowAllUsers";
+}
+<br />
+<h2>All Users</h2>
+<br />
+<button class="btn" type="button" style="background-color: #ac3939">
+    @Html.ActionLink("Back to Admin Menu", "Index")
+</button>
+<br />
+<br />
+<div class="row">
+    <div class="container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="btn-primary">
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => i.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => i.UserName)</td>
+                    <td>@Html.DisplayFor(modelItem => i.FullName)</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
